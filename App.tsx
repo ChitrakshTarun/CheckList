@@ -1,8 +1,7 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-// import type {PropsWithChildren} from 'react';
-
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
 import TasksPage from './src/screens/ToDoList';
 import NotesPage from './src/screens/Notes';
 import CalendarPage from './src/screens/Calendar';
@@ -13,10 +12,6 @@ import {useTheme} from 'react-native-paper';
 
 const Tab = createMaterialBottomTabNavigator();
 
-// type SectionProps = PropsWithChildren<{
-//   title: string;
-// }>;
-
 function App() {
   const theme = useTheme();
   theme.colors.secondaryContainer = 'transparent';
@@ -26,10 +21,9 @@ function App() {
         initialRouteName="Tasks"
         activeColor="#0E55CD"
         inactiveColor="#667C8A"
-        barStyle={{backgroundColor: '#fff'}}
-        //   shifting={true} // Set shifting to true for dynamic style changes
-        //        sceneAnimationEnabled={false} // Disable scene animation for better control
-      >
+        barStyle={{
+          backgroundColor: '#ffffff',
+        }}>
         <Tab.Screen
           name={'Tasks'}
           component={TasksPage}
