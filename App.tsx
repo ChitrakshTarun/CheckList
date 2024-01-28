@@ -1,118 +1,86 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+// import type {PropsWithChildren} from 'react';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+import TasksPage from './src/screens/ToDoList';
+import NotesPage from './src/screens/Notes';
+import CalendarPage from './src/screens/Calendar';
+import SettingsPage from './src/screens/Settings';
+import {NavigationContainer} from '@react-navigation/native';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {useTheme} from 'react-native-paper';
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const Tab = createMaterialBottomTabNavigator();
+
+// type SectionProps = PropsWithChildren<{
+//   title: string;
+// }>;
+
+function App() {
+  const theme = useTheme();
+  theme.colors.secondaryContainer = 'transparent';
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator
+        initialRouteName="Tasks"
+        activeColor="#0E55CD"
+        inactiveColor="#667C8A"
+        barStyle={{backgroundColor: '#fff'}}
+        //   shifting={true} // Set shifting to true for dynamic style changes
+        //        sceneAnimationEnabled={false} // Disable scene animation for better control
+      >
+        <Tab.Screen
+          name={'Tasks'}
+          component={TasksPage}
+          options={{
+            tabBarLabel: 'Tasks',
+            tabBarIcon: ({color}) => (
+              <MaterialCommunityIcons
+                name="format-list-checks"
+                color={color}
+                size={30}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name={'Notes'}
+          component={NotesPage}
+          options={{
+            tabBarLabel: 'Notes',
+            tabBarIcon: ({color}) => (
+              <MaterialCommunityIcons
+                name="note-edit"
+                color={color}
+                size={30}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name={'Calendar'}
+          component={CalendarPage}
+          options={{
+            tabBarLabel: 'Calendar',
+            tabBarIcon: ({color}) => (
+              <MaterialCommunityIcons name="calendar" color={color} size={30} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name={'Settings'}
+          component={SettingsPage}
+          options={{
+            tabBarLabel: 'Settings',
+            tabBarIcon: ({color}) => (
+              <MaterialCommunityIcons name="cog" color={color} size={30} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
