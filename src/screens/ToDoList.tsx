@@ -1,14 +1,18 @@
 import React from 'react';
-import {Text, ScrollView} from 'react-native';
+import {Text, ScrollView, View} from 'react-native';
 import Header from '../utils/Header';
 import {styles} from '../stylesheets/PageStyle';
+import NewButton from '../utils/NewButton';
 
-export default function TasksPage() {
+export default function NotesPage() {
   return (
-    <ScrollView style={styles.page}>
+    <View style={styles.page}>
       <Header title="Tasks" />
-      <Text>Tasks Page</Text>
-      <Text>To Be Developed</Text>
-    </ScrollView>
+      <ScrollView>
+        <Text>Tasks Page</Text>
+        <Text>To Be Developed</Text>
+      </ScrollView>
+      <NewButton />
+    </View>
   );
 }

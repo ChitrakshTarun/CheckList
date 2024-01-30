@@ -8,7 +8,6 @@ import SettingsPage from './src/screens/Settings';
 import {NavigationContainer} from '@react-navigation/native';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {useTheme} from 'react-native-paper';
-import NewButton from './src/utils/NewButton';
 import NavBarIcon from './src/utils/NavBarIcon';
 
 const Tab = createMaterialBottomTabNavigator();
@@ -68,7 +67,6 @@ function App() {
           }}
         />
       </Tab.Navigator>
-      <NewButton />
     </NavigationContainer>
   );
 }
