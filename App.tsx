@@ -10,7 +10,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {useTheme} from 'react-native-paper';
 import NewButton from './src/utils/NewButton';
-import {View} from 'react-native';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -33,19 +32,11 @@ function App() {
           options={{
             tabBarLabel: 'Tasks',
             tabBarIcon: ({color}) => (
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                {/* Center the icon */}
-                <MaterialCommunityIcons
-                  name="format-list-checks"
-                  color={color}
-                  size={30}
-                />
-              </View>
+              <MaterialCommunityIcons
+                name="format-list-checks"
+                color={color}
+                size={30}
+              />
             ),
           }}
         />
