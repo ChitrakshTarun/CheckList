@@ -1,7 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import TasksPage from './src/screens/ToDoList';
 import NotesPage from './src/screens/Notes';
 import CalendarPage from './src/screens/Calendar';
@@ -10,6 +9,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {useTheme} from 'react-native-paper';
 import NewButton from './src/utils/NewButton';
+import NavBarIcon from './src/utils/NavBarIcon';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -25,6 +25,7 @@ function App() {
         labeled={false}
         barStyle={{
           backgroundColor: '#ffffff',
+          height: 64,
         }}>
         <Tab.Screen
           name={'Tasks'}
@@ -32,11 +33,7 @@ function App() {
           options={{
             tabBarLabel: 'Tasks',
             tabBarIcon: ({color}) => (
-              <MaterialCommunityIcons
-                name="format-list-checks"
-                color={color}
-                size={30}
-              />
+              <NavBarIcon name="format-list-checks" color={color} size={30} />
             ),
           }}
         />
@@ -46,11 +43,7 @@ function App() {
           options={{
             tabBarLabel: 'Notes',
             tabBarIcon: ({color}) => (
-              <MaterialCommunityIcons
-                name="note-edit"
-                color={color}
-                size={30}
-              />
+              <NavBarIcon name="note-edit" color={color} size={30} />
             ),
           }}
         />
@@ -60,7 +53,7 @@ function App() {
           options={{
             tabBarLabel: 'Calendar',
             tabBarIcon: ({color}) => (
-              <MaterialCommunityIcons name="calendar" color={color} size={30} />
+              <NavBarIcon name="calendar" color={color} size={30} />
             ),
           }}
         />
@@ -70,7 +63,7 @@ function App() {
           options={{
             tabBarLabel: 'Settings',
             tabBarIcon: ({color}) => (
-              <MaterialCommunityIcons name="cog" color={color} size={30} />
+              <NavBarIcon name="cog" color={color} size={30} />
             ),
           }}
         />

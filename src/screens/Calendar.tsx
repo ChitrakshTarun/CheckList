@@ -1,11 +1,14 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Text, ScrollView} from 'react-native';
+import Header from '../utils/Header';
+import {styles} from '../stylesheets/PageStyle';
 
 export default function CalendarPage() {
   return (
-    <View>
+    <ScrollView style={styles.page}>
+      <Header title="Calendar" />
       <Text>Calendar Page</Text>
       <Text>To Be Developed</Text>
-    </View>
+    </ScrollView>
   );
 }

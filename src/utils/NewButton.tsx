@@ -15,7 +15,7 @@ const NewButton = () => {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: 96,
+    bottom: 80,
     right: 16,
   },
   button: {

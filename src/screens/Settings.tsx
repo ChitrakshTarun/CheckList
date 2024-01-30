@@ -1,11 +1,14 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Text, ScrollView} from 'react-native';
+import Header from '../utils/Header';
+import {styles} from '../stylesheets/PageStyle';
 
 export default function SettingsPage() {
   return (
-    <View>
+    <ScrollView style={styles.page}>
+      <Header title="Settings" />
       <Text>Settings Page</Text>
       <Text>To Be Developed</Text>
-    </View>
+    </ScrollView>
   );
 }
