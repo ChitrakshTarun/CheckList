@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {Modal, TextInput, View, Button, StyleSheet, Text} from 'react-native';
+import {
+  Modal,
+  TextInput,
+  View,
+  Pressable,
+  StyleSheet,
+  Text,
+} from 'react-native';
 
 interface NewTaskModalProps {
   onButtonPress: () => void;
@@ -23,17 +30,28 @@ const NewTaskModal: React.FC<NewTaskModalProps> = ({
 
   return (
     <Modal animationType="slide" transparent={true} visible={true}>
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <Text>{`New ${placeholder}`}</Text>
-          <TextInput
-            style={styles.modalText}
-            onChangeText={setInputValue}
-            value={inputValue}
-          />
+      <View style={styles.background}>
+        <View style={styles.modal}>
+          <View style={styles.headerContainer}>
+            <Text style={styles.headerText}>{`New ${placeholder}`}</Text>
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              multiline={true}
+              autoFocus={true}
+              style={styles.inputText}
+              onChangeText={setInputValue}
+              value={inputValue}
+              placeholder="Do my laundry..."
+            />
+          </View>
           <View style={styles.buttonContainer}>
-            <Button title="OK" onPress={handleOk} />
-            <Button title="Cancel" onPress={handleCancel} />
+            <Pressable onPress={handleCancel}>
+              <Text style={styles.buttonText}>Cancel</Text>
+            </Pressable>
+            <Pressable onPress={handleOk}>
+              <Text style={styles.buttonText}>OK</Text>
+            </Pressable>
           </View>
         </View>
       </View>
@@ -44,23 +62,17 @@ const NewTaskModal: React.FC<NewTaskModalProps> = ({
 // ... rest of the code
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  centeredView: {
+  background: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.4)', // Add this line
   },
-  modalView: {
+  modal: {
     margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
+    padding: 24,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -70,15 +82,30 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+  headerContainer: {},
+  inputContainer: {
+    marginTop: 15,
+    backgroundColor: '#F2F2F2',
+    borderRadius: 12,
+  },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     width: '100%',
     marginTop: 15,
   },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
+  buttonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginLeft: 75,
+  },
+  inputText: {marginHorizontal: 8},
+  headerText: {
+    width: '100%',
+    height: 'auto',
+    color: '#000',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
 

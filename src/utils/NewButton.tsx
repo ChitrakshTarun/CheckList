@@ -14,7 +14,7 @@ const NewButton = () => {
       {modalVisible && (
         <NewTaskModal
           onButtonPress={() => setModalVisible(false)}
-          placeholder="task"
+          placeholder="Post"
         />
       )}
     </View>
