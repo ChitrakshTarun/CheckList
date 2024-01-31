@@ -3,7 +3,7 @@ import {Pressable, StyleSheet, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import NewTaskModal from './NewTaskModal';
 
-const NewButton = () => {
+const NewButton = ({addTask}) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -14,7 +14,8 @@ const NewButton = () => {
       {modalVisible && (
         <NewTaskModal
           onButtonPress={() => setModalVisible(false)}
-          placeholder="Post"
+          addTask={addTask}
+          placeholder="post"
         />
       )}
     </View>

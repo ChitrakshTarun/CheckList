@@ -11,17 +11,20 @@ import {
 interface NewTaskModalProps {
   onButtonPress: () => void;
   placeholder: string; // Add this line
+  addTask: (task: string) => void;
 }
 
 const NewTaskModal: React.FC<NewTaskModalProps> = ({
   onButtonPress,
   placeholder,
+  addTask,
 }) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleOk = () => {
     onButtonPress();
     console.log(inputValue);
+    addTask(inputValue);
   };
 
   const handleCancel = () => {
