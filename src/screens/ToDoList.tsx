@@ -4,7 +4,7 @@ import Header from '../utils/Header';
 import {styles} from '../stylesheets/PageStyle';
 import NewButton from '../utils/NewButton';
 
-export default function NotesPage() {
+export default function TasksPage() {
   return (
     <View style={styles.page}>
       <Header title="Tasks" />
