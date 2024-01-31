@@ -6,9 +6,9 @@ import NewButton from '../utils/NewButton';
 import TaskItem from '../utils/TaskItem';
 
 export default function TasksPage() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<any[]>([]);
 
-  const addTask = task => {
+  const addTask = (task: any) => {
     setTasks([...tasks, task]);
   };
 
