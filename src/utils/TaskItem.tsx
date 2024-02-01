@@ -10,7 +10,7 @@ const TaskItem = ({task}: {task: string}) => {
   ) => {
     const trans = progress.interpolate({
       inputRange: [0, 1],
-      outputRange: [50, 0],
+      outputRange: [20, 0],
     });
     return <DeleteButton effect={trans} />;
   };
@@ -35,7 +35,7 @@ const TaskItem = ({task}: {task: string}) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginVertical: 12,
+    marginVertical: 8,
     marginHorizontal: 4,
     alignItems: 'center',
     backgroundColor: 'white',

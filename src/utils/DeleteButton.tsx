@@ -1,18 +1,26 @@
-import React from 'react';
-import {StyleSheet, Animated} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Animated, Pressable} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import DeleteConfirmModal from './DeleteConfirmModal';
+
 interface DeleteButtonProps {
   effect: Animated.AnimatedInterpolation<number>;
 }
 const DeleteButton: React.FC<DeleteButtonProps> = ({effect}) => {
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <Animated.View
       style={[styles.rightAction, {transform: [{translateX: effect}]}]}>
-      <MaterialCommunityIcons
-        name="trash-can-outline"
-        color={'#ffffff'}
-        size={30}
-      />
+      <Pressable onPress={() => setModalVisible(true)}>
+        <MaterialCommunityIcons
+          name="trash-can-outline"
+          color={'#ffffff'}
+          size={30}
+        />
+      </Pressable>
+      {modalVisible && (
+        <DeleteConfirmModal onButtonPress={() => setModalVisible(false)} />
+      )}
     </Animated.View>
   );
 };
@@ -20,11 +28,11 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({effect}) => {
 const styles = StyleSheet.create({
   rightAction: {
     marginVertical: 12,
-    backgroundColor: '#dd2c00',
     justifyContent: 'center',
     alignItems: 'center',
     width: 80,
     borderRadius: 12,
+    backgroundColor: '#F00E0E',
   },
 });
 
