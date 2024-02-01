@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View, Animated} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {GestureHandlerRootView, Swipeable} from 'react-native-gesture-handler';
-import DeleteButton from './DeleteButton';
+import DeleteButton from '../buttons/DeleteItem';
 
 const TaskItem = ({task, delTask}: {task: string; delTask: () => void}) => {
   const renderRightActions = (

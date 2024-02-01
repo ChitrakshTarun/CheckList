@@ -1,14 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-import TasksPage from './src/screens/ToDoList';
+import TasksPage from './src/screens/Tasks';
 import NotesPage from './src/screens/Notes';
 import CalendarPage from './src/screens/Calendar';
 import SettingsPage from './src/screens/Settings';
 import {NavigationContainer} from '@react-navigation/native';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {useTheme} from 'react-native-paper';
-import NavBarIcon from './src/utils/NavBarIcon';
+import NavBarIcon from './src/components/NavBarIcon';
 
 const Tab = createMaterialBottomTabNavigator();
 

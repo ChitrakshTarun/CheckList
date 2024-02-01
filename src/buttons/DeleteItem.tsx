@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Animated, Pressable} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import DeleteConfirmModal from './DeleteConfirmModal';
+import DeleteConfirmModal from '../modals/ConfirmDeleteModal';
 
 interface DeleteButtonProps {
   effect: Animated.AnimatedInterpolation<number>;

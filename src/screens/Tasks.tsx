@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import Header from '../utils/Header';
+import Header from '../components/Header';
 import {globalStyles} from '../stylesheets/PageStyle';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-import NewButton from '../utils/NewButton';
-import TaskItem from '../utils/TaskItem';
+import NewButton from '../buttons/NewItem';
+import TaskItem from '../components/TaskItem';
 
 export default function TasksPage() {
   const [tasks, setTasks] = useState<any[]>([]);
