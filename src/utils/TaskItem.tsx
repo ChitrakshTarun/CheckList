@@ -1,19 +1,34 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Animated} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {GestureHandlerRootView, Swipeable} from 'react-native-gesture-handler';
+import DeleteButton from './DeleteButton';
 
 const TaskItem = ({task}: {task: string}) => {
+  const renderRightActions = (
+    progress: Animated.AnimatedInterpolation<number>,
+  ) => {
+    const trans = progress.interpolate({
+      inputRange: [0, 1],
+      outputRange: [50, 0],
+    });
+    return <DeleteButton effect={trans} />;
+  };
   return (
-    <View style={styles.container}>
-      <View style={styles.checkbox}>
-        <MaterialCommunityIcons
-          name="square-rounded-outline"
-          color={'#000000'}
-          size={30}
-        />
-      </View>
-      <Text style={styles.text}>{task}</Text>
-    </View>
+    <GestureHandlerRootView>
+      <Swipeable renderRightActions={renderRightActions}>
+        <View style={styles.container}>
+          <View style={styles.checkbox}>
+            <MaterialCommunityIcons
+              name="square-rounded-outline"
+              color={'#000000'}
+              size={30}
+            />
+          </View>
+          <Text style={styles.text}>{task}</Text>
+        </View>
+      </Swipeable>
+    </GestureHandlerRootView>
   );
 };
 
@@ -44,6 +59,14 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 22,
     alignItems: 'center',
+  },
+  rightAction: {
+    marginVertical: 12,
+    backgroundColor: '#dd2c00',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 80,
+    borderRadius: 12,
   },
 });
 
