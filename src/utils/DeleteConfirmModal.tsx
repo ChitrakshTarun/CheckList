@@ -2,13 +2,18 @@ import React from 'react';
 import {Modal, View, Pressable, StyleSheet, Text} from 'react-native';
 
 interface DeleteConfirmModalProps {
+  isVisible: boolean;
   onButtonPress: () => void;
+  delTask: () => void;
 }
 
 const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({
+  isVisible,
   onButtonPress,
+  delTask,
 }) => {
   const handleDelete = () => {
+    delTask();
     onButtonPress();
   };
 
@@ -17,7 +22,7 @@ const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({
   };
 
   return (
-    <Modal animationType="none" transparent={true} visible={true}>
+    <Modal animationType="none" transparent={true} visible={isVisible}>
       <View style={styles.background}>
         <View style={styles.modal}>
           <View>

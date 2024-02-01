@@ -4,15 +4,15 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {GestureHandlerRootView, Swipeable} from 'react-native-gesture-handler';
 import DeleteButton from './DeleteButton';
 
-const TaskItem = ({task}: {task: string}) => {
+const TaskItem = ({task, delTask}: {task: string; delTask: () => void}) => {
   const renderRightActions = (
     progress: Animated.AnimatedInterpolation<number>,
   ) => {
     const trans = progress.interpolate({
       inputRange: [0, 1],
-      outputRange: [20, 0],
+      outputRange: [50, 0],
     });
-    return <DeleteButton effect={trans} />;
+    return <DeleteButton effect={trans} delTask={delTask} />;
   };
   return (
     <GestureHandlerRootView>

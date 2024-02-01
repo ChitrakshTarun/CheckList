@@ -5,12 +5,13 @@ import DeleteConfirmModal from './DeleteConfirmModal';
 
 interface DeleteButtonProps {
   effect: Animated.AnimatedInterpolation<number>;
+  delTask: () => void;
 }
-const DeleteButton: React.FC<DeleteButtonProps> = ({effect}) => {
+const DeleteButton: React.FC<DeleteButtonProps> = ({effect, delTask}) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <Animated.View
-      style={[styles.rightAction, {transform: [{translateX: effect}]}]}>
+      style={[styles.deleteButton, {transform: [{translateX: effect}]}]}>
       <Pressable onPress={() => setModalVisible(true)}>
         <MaterialCommunityIcons
           name="trash-can-outline"
@@ -19,15 +20,19 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({effect}) => {
         />
       </Pressable>
       {modalVisible && (
-        <DeleteConfirmModal onButtonPress={() => setModalVisible(false)} />
+        <DeleteConfirmModal
+          isVisible={modalVisible}
+          onButtonPress={() => setModalVisible(false)}
+          delTask={delTask}
+        />
       )}
     </Animated.View>
   );
 };
 
 const styles = StyleSheet.create({
-  rightAction: {
-    marginVertical: 12,
+  deleteButton: {
+    marginVertical: 8,
     justifyContent: 'center',
     alignItems: 'center',
     width: 80,

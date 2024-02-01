@@ -14,6 +14,10 @@ export default function TasksPage() {
     setTasks([...tasks, task]);
   };
 
+  const delTask = (index: number) => {
+    setTasks(tasks.filter((task, i) => i !== index));
+  };
+
   return (
     <View style={globalStyles.page}>
       <Header title="Tasks" />
@@ -25,7 +29,7 @@ export default function TasksPage() {
       ) : (
         <ScrollView>
           {tasks.map((task, index) => (
-            <TaskItem key={index} task={task} />
+            <TaskItem key={index} task={task} delTask={() => delTask(index)} />
           ))}
         </ScrollView>
       )}
