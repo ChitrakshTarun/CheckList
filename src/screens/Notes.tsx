@@ -13,7 +13,7 @@ export default function NotesPage() {
   };
   return (
     <View style={globalStyles.page}>
-      <Header title="Tasks" />
+      <Header title="Notes" />
       {notes.length === 0 ? (
         <View style={globalStyles.emptypage}>
           <MaterialIcons name="do-not-disturb" size={256} />

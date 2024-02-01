@@ -10,7 +10,7 @@ import {
 
 interface NewTaskModalProps {
   onButtonPress: () => void;
-  placeholder: string; // Add this line
+  placeholder: string;
   addTask: (task: string) => void;
 }
 
@@ -49,11 +49,11 @@ const NewTaskModal: React.FC<NewTaskModalProps> = ({
             />
           </View>
           <View style={styles.buttonContainer}>
-            <Pressable onPress={handleCancel}>
-              <Text style={styles.buttonText}>Cancel</Text>
-            </Pressable>
             <Pressable onPress={handleOk}>
               <Text style={styles.buttonText}>OK</Text>
+            </Pressable>
+            <Pressable onPress={handleCancel}>
+              <Text style={styles.buttonText}>Cancel</Text>
             </Pressable>
           </View>
         </View>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  headerContainer: {},
+  headerContainer: {paddingHorizontal: 4},
   inputContainer: {
     marginTop: 15,
     backgroundColor: '#F2F2F2',
@@ -96,11 +96,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     width: '100%',
     marginTop: 15,
+    paddingRight: 2,
   },
   buttonText: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginLeft: 75,
+    marginLeft: 20,
   },
   inputText: {marginHorizontal: 8},
   headerText: {

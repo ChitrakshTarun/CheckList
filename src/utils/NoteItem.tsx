@@ -20,6 +20,7 @@ const NoteItem = ({note}: {note: string}) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    height: 'auto',
     marginVertical: 12,
     marginHorizontal: 4,
     alignItems: 'center',
