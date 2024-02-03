@@ -13,8 +13,10 @@ Starter Project, made using React Native, to learn React Native.
 
 (Not in Order)
 
-- Complete Tasks page
-- Complete Notes page
-- Add Calendar Functionality (to assign dates to tasks)
-- Create Priority Hierarchy in Tasks
-- Add Dark Mode Support
+- [x] Complete Basic Tasks page
+- [x] Complete Basic Notes page
+- [ ] Add Dark Mode Support
+- [ ] Clean up code, make certain portions more reusable.
+- [ ] Allow descriptions and more details in Tasks & Notes.
+- [ ] Add Calendar Functionality (to assign dates to tasks)
+- [ ] Create Priority Hierarchy in Tasks
