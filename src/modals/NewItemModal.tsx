@@ -34,13 +34,11 @@ const NewItemModal: React.FC<NewItemModalProps> = ({
       <View style={styles.background}>
         <View style={styles.modal}>
           <View style={styles.headerContainer}>
-            {/* <Text style={styles.headerText}> */}
             {route.name === 'Tasks' ? (
               <Text style={styles.headerText}>New Task</Text>
             ) : (
               <Text style={styles.headerText}>New Note</Text>
             )}
-            {/* </Text> */}
           </View>
           <View style={styles.inputContainer}>
             <TextInput

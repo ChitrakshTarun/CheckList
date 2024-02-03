@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import {StyleSheet, Animated, Pressable} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import DeleteConfirmModal from '../modals/ConfirmDeleteModal';
+import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
 
 interface DeleteItemButtonProps {
   effect: Animated.AnimatedInterpolation<number>;
   delItem: () => void;
-  task: string;
+  item: string;
 }
 const DeleteItemButton: React.FC<DeleteItemButtonProps> = ({
   effect,
   delItem,
-  task,
+  item,
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
@@ -25,11 +25,11 @@ const DeleteItemButton: React.FC<DeleteItemButtonProps> = ({
         />
       </Pressable>
       {modalVisible && (
-        <DeleteConfirmModal
+        <ConfirmDeleteModal
           isVisible={modalVisible}
           onButtonPress={() => setModalVisible(false)}
           delItem={delItem}
-          task={task}
+          item={item}
         />
       )}
     </Animated.View>

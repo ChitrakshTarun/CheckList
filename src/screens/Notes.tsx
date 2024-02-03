@@ -10,31 +10,31 @@ import {globalStyles} from '../stylesheets/PageStyle';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import NewItemButton from '../buttons/NewItem';
-import TaskItem from '../components/TaskItem';
+import NoteItem from '../components/NoteItem';
 
-export default function TasksPage() {
-  const [tasks, setTasks] = useState<any[]>([]);
+export default function NotesPage() {
+  const [notes, setNotes] = useState<any[]>([]);
 
-  const addItem = (task: any) => {
-    setTasks([...tasks, task]);
+  const addItem = (note: any) => {
+    setNotes([...notes, note]);
   };
 
   const delItem = (index: number) => {
-    setTasks(tasks.filter((task, i) => i !== index));
+    setNotes(notes.filter((note, i) => i !== index));
   };
 
   return (
     <View style={globalStyles.page}>
       <Header title="Notes" />
-      {tasks.length === 0 ? (
+      {notes.length === 0 ? (
         <View style={globalStyles.emptypage}>
           <MaterialIcons name="do-not-disturb" size={256} />
-          <Text style={styles.text}>No tasks yet. Add a new task!</Text>
+          <Text style={styles.text}>No notes yet. Add a new note!</Text>
         </View>
       ) : (
         <ScrollView>
-          {tasks.map((task, index) => (
-            <TaskItem key={index} task={task} delItem={() => delItem(index)} />
+          {notes.map((note, index) => (
+            <NoteItem key={index} note={note} delItem={() => delItem(index)} />
           ))}
         </ScrollView>
       )}

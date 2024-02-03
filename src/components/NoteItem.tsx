@@ -4,7 +4,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {GestureHandlerRootView, Swipeable} from 'react-native-gesture-handler';
 import DeleteItemButton from '../buttons/DeleteItem';
 
-const TaskItem = ({task, delItem}: {task: string; delItem: () => void}) => {
+const NoteItem = ({note, delItem}: {note: string; delItem: () => void}) => {
   const renderRightActions = (
     progress: Animated.AnimatedInterpolation<number>,
   ) => {
@@ -12,7 +12,7 @@ const TaskItem = ({task, delItem}: {task: string; delItem: () => void}) => {
       inputRange: [0, 1],
       outputRange: [50, 0],
     });
-    return <DeleteItemButton effect={trans} delItem={delItem} task={task} />;
+    return <DeleteItemButton effect={trans} delItem={delItem} item={note} />;
   };
   return (
     <GestureHandlerRootView>
@@ -25,7 +25,7 @@ const TaskItem = ({task, delItem}: {task: string; delItem: () => void}) => {
               size={30}
             />
           </View>
-          <Text style={styles.text}>{task}</Text>
+          <Text style={styles.text}>{note}</Text>
         </View>
       </Swipeable>
     </GestureHandlerRootView>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TaskItem;
+export default NoteItem;
 
 // import React from 'react';
 // import {Text, View, StyleSheet} from 'react-native';

@@ -1,24 +1,24 @@
 import React from 'react';
 import {Modal, View, Pressable, StyleSheet, Text} from 'react-native';
-
+import {useRoute} from '@react-navigation/native';
 interface ConfirmDeleteModalProps {
   isVisible: boolean;
   onButtonPress: () => void;
   delItem: () => void;
-  task: string;
+  item: string;
 }
 
 const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
   isVisible,
   onButtonPress,
   delItem,
-  task,
+  item,
 }) => {
   const handleDelete = () => {
     delItem();
     onButtonPress();
   };
-
+  const route = useRoute();
   const handleCancel = () => {
     onButtonPress();
   };
@@ -28,10 +28,17 @@ const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
       <View style={styles.background}>
         <View style={styles.modal}>
           <View>
-            <Text style={styles.headerText}>{'Delete Task?'}</Text>
+            <Text style={styles.headerText}>
+              {' '}
+              {route.name === 'Tasks' ? (
+                <Text style={styles.headerText}>Delete Task?</Text>
+              ) : (
+                <Text style={styles.headerText}>Delete Note?</Text>
+              )}
+            </Text>
           </View>
           <View style={styles.taskContainer}>
-            <Text>{task}</Text>
+            <Text>{item}</Text>
           </View>
           <View style={styles.buttonContainer}>
             <Pressable onPress={handleDelete}>
