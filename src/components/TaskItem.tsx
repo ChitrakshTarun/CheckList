@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, View, Animated} from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {GestureHandlerRootView, Swipeable} from 'react-native-gesture-handler';
 import DeleteItemButton from '../buttons/DeleteItem';
+import Checkbox from './Checkbox';
 
 const TaskItem = ({task, delItem}: {task: string; delItem: () => void}) => {
   const renderRightActions = (
@@ -19,11 +19,12 @@ const TaskItem = ({task, delItem}: {task: string; delItem: () => void}) => {
       <Swipeable renderRightActions={renderRightActions}>
         <View style={styles.container}>
           <View style={styles.checkbox}>
-            <MaterialCommunityIcons
+            <Checkbox />
+            {/* <MaterialCommunityIcons
               name="square-rounded-outline"
               color={'#000000'}
               size={30}
-            />
+            /> */}
           </View>
           <Text style={styles.text}>{task}</Text>
         </View>
