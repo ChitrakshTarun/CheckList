@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, Animated, ToastAndroid} from 'react-native';
+import {StyleSheet, Text, View, Animated} from 'react-native';
 import {GestureHandlerRootView, Swipeable} from 'react-native-gesture-handler';
 import DeleteItemButton from '../buttons/DeleteItem';
 import Checkbox from './Checkbox';
@@ -17,9 +17,6 @@ const TaskItem = ({task, delItem}: {task: string; delItem: () => void}) => {
   const [checked, setChecked] = useState(false);
   const handlePress = () => {
     setChecked(!checked);
-    if (checked === false) {
-      ToastAndroid.show(`Task "${task}" completed!`, ToastAndroid.SHORT);
-    }
   };
   return (
     <GestureHandlerRootView>
