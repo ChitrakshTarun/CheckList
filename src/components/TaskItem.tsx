@@ -1,5 +1,5 @@
-import React from 'react';
-import {StyleSheet, Text, View, Animated} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View, Animated, ToastAndroid} from 'react-native';
 import {GestureHandlerRootView, Swipeable} from 'react-native-gesture-handler';
 import DeleteItemButton from '../buttons/DeleteItem';
 import Checkbox from './Checkbox';
@@ -14,19 +14,25 @@ const TaskItem = ({task, delItem}: {task: string; delItem: () => void}) => {
     });
     return <DeleteItemButton effect={trans} delItem={delItem} item={task} />;
   };
+  const [checked, setChecked] = useState(false);
+  const handlePress = () => {
+    setChecked(!checked);
+    if (checked === false) {
+      ToastAndroid.show(`Task "${task}" completed!`, ToastAndroid.SHORT);
+    }
+  };
   return (
     <GestureHandlerRootView>
       <Swipeable renderRightActions={renderRightActions}>
         <View style={styles.container}>
           <View style={styles.checkbox}>
-            <Checkbox />
-            {/* <MaterialCommunityIcons
-              name="square-rounded-outline"
-              color={'#000000'}
-              size={30}
-            /> */}
+            <Checkbox status={checked} handlePress={handlePress} />
           </View>
-          <Text style={styles.text}>{task}</Text>
+          <Text
+            numberOfLines={1}
+            style={checked ? styles.textStrike : styles.text}>
+            {task}
+          </Text>
         </View>
       </Swipeable>
     </GestureHandlerRootView>
@@ -60,6 +66,12 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 22,
     alignItems: 'center',
+  },
+  textStrike: {
+    color: '#000',
+    fontSize: 22,
+    alignItems: 'center',
+    textDecorationLine: 'line-through',
   },
   rightAction: {
     marginVertical: 12,
