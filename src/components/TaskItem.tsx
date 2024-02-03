@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View, Animated} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {GestureHandlerRootView, Swipeable} from 'react-native-gesture-handler';
-import DeleteButton from '../buttons/DeleteItem';
+import DeleteItem from '../buttons/DeleteItem';
 
 const TaskItem = ({task, delTask}: {task: string; delTask: () => void}) => {
   const renderRightActions = (
@@ -12,7 +12,7 @@ const TaskItem = ({task, delTask}: {task: string; delTask: () => void}) => {
       inputRange: [0, 1],
       outputRange: [50, 0],
     });
-    return <DeleteButton effect={trans} delTask={delTask} task={task} />;
+    return <DeleteItem effect={trans} delTask={delTask} task={task} />;
   };
   return (
     <GestureHandlerRootView>

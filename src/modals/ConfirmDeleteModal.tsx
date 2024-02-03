@@ -1,14 +1,14 @@
 import React from 'react';
 import {Modal, View, Pressable, StyleSheet, Text} from 'react-native';
 
-interface DeleteConfirmModalProps {
+interface ConfirmDeleteModalProps {
   isVisible: boolean;
   onButtonPress: () => void;
   delTask: () => void;
   task: string;
 }
 
-const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({
+const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
   isVisible,
   onButtonPress,
   delTask,
@@ -100,4 +100,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DeleteConfirmModal;
+export default ConfirmDeleteModal;

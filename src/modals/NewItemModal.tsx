@@ -8,13 +8,13 @@ import {
   Text,
 } from 'react-native';
 
-interface NewTaskModalProps {
+interface NewItemModalProps {
   onButtonPress: () => void;
   placeholder: string;
   addTask: (task: string) => void;
 }
 
-const NewTaskModal: React.FC<NewTaskModalProps> = ({
+const NewItemModal: React.FC<NewItemModalProps> = ({
   onButtonPress,
   placeholder,
   addTask,
@@ -113,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NewTaskModal;
+export default NewItemModal;
