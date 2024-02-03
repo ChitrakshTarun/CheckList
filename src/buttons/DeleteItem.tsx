@@ -1,18 +1,22 @@
 import React, {useState} from 'react';
 import {StyleSheet, Animated, Pressable} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import ConfirmDeleteModal from '../modals/ConfirmDeleteModal';
+import DeleteConfirmModal from '../modals/ConfirmDeleteModal';
 
-interface DeleteItemProps {
+interface DeleteItemButtonProps {
   effect: Animated.AnimatedInterpolation<number>;
-  delTask: () => void;
+  delItem: () => void;
   task: string;
 }
-const DeleteItem: React.FC<DeleteItemProps> = ({effect, delTask, task}) => {
+const DeleteItemButton: React.FC<DeleteItemButtonProps> = ({
+  effect,
+  delItem,
+  task,
+}) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <Animated.View
-      style={[styles.DeleteItem, {transform: [{translateX: effect}]}]}>
+      style={[styles.DeleteItemButton, {transform: [{translateX: effect}]}]}>
       <Pressable onPress={() => setModalVisible(true)}>
         <MaterialCommunityIcons
           name="trash-can-outline"
@@ -21,10 +25,10 @@ const DeleteItem: React.FC<DeleteItemProps> = ({effect, delTask, task}) => {
         />
       </Pressable>
       {modalVisible && (
-        <ConfirmDeleteModal
+        <DeleteConfirmModal
           isVisible={modalVisible}
           onButtonPress={() => setModalVisible(false)}
-          delTask={delTask}
+          delItem={delItem}
           task={task}
         />
       )}
@@ -33,7 +37,7 @@ const DeleteItem: React.FC<DeleteItemProps> = ({effect, delTask, task}) => {
 };
 
 const styles = StyleSheet.create({
-  DeleteItem: {
+  DeleteItemButton: {
     marginVertical: 8,
     justifyContent: 'center',
     alignItems: 'center',
@@ -43,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DeleteItem;
+export default DeleteItemButton;

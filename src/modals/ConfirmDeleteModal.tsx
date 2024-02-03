@@ -4,18 +4,18 @@ import {Modal, View, Pressable, StyleSheet, Text} from 'react-native';
 interface ConfirmDeleteModalProps {
   isVisible: boolean;
   onButtonPress: () => void;
-  delTask: () => void;
+  delItem: () => void;
   task: string;
 }
 
 const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
   isVisible,
   onButtonPress,
-  delTask,
+  delItem,
   task,
 }) => {
   const handleDelete = () => {
-    delTask();
+    delItem();
     onButtonPress();
   };
 

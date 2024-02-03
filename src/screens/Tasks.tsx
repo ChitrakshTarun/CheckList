@@ -4,17 +4,17 @@ import Header from '../components/Header';
 import {globalStyles} from '../stylesheets/PageStyle';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-import NewButton from '../buttons/NewItem';
+import NewItemButton from '../buttons/NewItem';
 import TaskItem from '../components/TaskItem';
 
 export default function TasksPage() {
   const [tasks, setTasks] = useState<any[]>([]);
 
-  const addTask = (task: any) => {
+  const addItem = (task: any) => {
     setTasks([...tasks, task]);
   };
 
-  const delTask = (index: number) => {
+  const delItem = (index: number) => {
     setTasks(tasks.filter((task, i) => i !== index));
   };
 
@@ -29,11 +29,11 @@ export default function TasksPage() {
       ) : (
         <ScrollView>
           {tasks.map((task, index) => (
-            <TaskItem key={index} task={task} delTask={() => delTask(index)} />
+            <TaskItem key={index} task={task} delItem={() => delItem(index)} />
           ))}
         </ScrollView>
       )}
-      <NewButton addTask={addTask} />
+      <NewItemButton addItem={addItem} />
     </View>
   );
 }

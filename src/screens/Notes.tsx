@@ -1,20 +1,45 @@
-import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+/*
+This page is currently a copy of the Tasks Page.
+It will be updated to be the Notes Page with it's own specific components instead of reusing the Task components.
+*/
+
+import React, {useState} from 'react';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import Header from '../components/Header';
 import {globalStyles} from '../stylesheets/PageStyle';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-export default function NotesPage() {
+import NewItemButton from '../buttons/NewItem';
+import TaskItem from '../components/TaskItem';
+
+export default function TasksPage() {
+  const [tasks, setTasks] = useState<any[]>([]);
+
+  const addItem = (task: any) => {
+    setTasks([...tasks, task]);
+  };
+
+  const delItem = (index: number) => {
+    setTasks(tasks.filter((task, i) => i !== index));
+  };
+
   return (
-    // <ScrollView style={globalStyles.page}>
     <View style={globalStyles.page}>
       <Header title="Notes" />
-      <View style={globalStyles.emptypage}>
-        <MaterialCommunityIcons name="progress-wrench" size={256} />
-        <Text style={styles.text}>Notes Page Under Construction!</Text>
-      </View>
+      {tasks.length === 0 ? (
+        <View style={globalStyles.emptypage}>
+          <MaterialIcons name="do-not-disturb" size={256} />
+          <Text style={styles.text}>No tasks yet. Add a new task!</Text>
+        </View>
+      ) : (
+        <ScrollView>
+          {tasks.map((task, index) => (
+            <TaskItem key={index} task={task} delItem={() => delItem(index)} />
+          ))}
+        </ScrollView>
+      )}
+      <NewItemButton addItem={addItem} />
     </View>
-    // </ScrollView>
   );
 }
 
@@ -24,6 +49,32 @@ const styles = StyleSheet.create({
   },
 });
 
+// import React from 'react';
+// import {Text, View, StyleSheet} from 'react-native';
+// import Header from '../components/Header';
+// import {globalStyles} from '../stylesheets/PageStyle';
+// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+// export default function NotesPage() {
+//   return (
+//     // <ScrollView style={globalStyles.page}>
+//     <View style={globalStyles.page}>
+//       <Header title="Notes" />
+//       <View style={globalStyles.emptypage}>
+//         <MaterialCommunityIcons name="progress-wrench" size={256} />
+//         <Text style={styles.text}>Notes Page Under Construction!</Text>
+//       </View>
+//     </View>
+//     // </ScrollView>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   text: {
+//     fontSize: 24,
+//   },
+// });
+
 // Actual Notes Code, to be worked on later
 
 // import React from 'react';
@@ -31,12 +82,12 @@ const styles = StyleSheet.create({
 // import Header from '../components/Header';
 // import {globalStyles} from '../stylesheets/PageStyle';
 // import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-// import NewButton from '../utils/NewButton';
+// import NewItemButton from '../utils/NewItemButton';
 // import NoteItem from '../utils/NoteItem';
 
 // export default function NotesPage() {
 //   const [notes, setNotes] = useState<any[]>([]);
-//   const addTask = (note: any) => {
+//   const addItem = (note: any) => {
 //     setNotes([...notes, note]);
 //   };
 //   return (
@@ -59,7 +110,7 @@ const styles = StyleSheet.create({
 //           ))}
 //         </ScrollView>
 //       )}
-//       <NewButton addTask={addTask} />
+//       <NewItemButton addItem={addItem} />
 //     </View>
 //   );
 // }

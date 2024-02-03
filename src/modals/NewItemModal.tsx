@@ -7,36 +7,40 @@ import {
   StyleSheet,
   Text,
 } from 'react-native';
+import {useRoute} from '@react-navigation/native';
 
 interface NewItemModalProps {
   onButtonPress: () => void;
-  placeholder: string;
-  addTask: (task: string) => void;
+  addItem: (task: string) => void;
 }
 
 const NewItemModal: React.FC<NewItemModalProps> = ({
   onButtonPress,
-  placeholder,
-  addTask,
+  addItem,
 }) => {
   const [inputValue, setInputValue] = useState('');
-
+  const route = useRoute();
   const handleOk = () => {
     onButtonPress();
     console.log(inputValue);
-    addTask(inputValue);
+    addItem(inputValue);
   };
 
   const handleCancel = () => {
     onButtonPress();
   };
-
   return (
     <Modal animationType="slide" transparent={true} visible={true}>
       <View style={styles.background}>
         <View style={styles.modal}>
           <View style={styles.headerContainer}>
-            <Text style={styles.headerText}>{`New ${placeholder}`}</Text>
+            {/* <Text style={styles.headerText}> */}
+            {route.name === 'Tasks' ? (
+              <Text style={styles.headerText}>New Task</Text>
+            ) : (
+              <Text style={styles.headerText}>New Note</Text>
+            )}
+            {/* </Text> */}
           </View>
           <View style={styles.inputContainer}>
             <TextInput
