@@ -5,12 +5,14 @@ interface DeleteConfirmModalProps {
   isVisible: boolean;
   onButtonPress: () => void;
   delTask: () => void;
+  task: string;
 }
 
 const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({
   isVisible,
   onButtonPress,
   delTask,
+  task,
 }) => {
   const handleDelete = () => {
     delTask();
@@ -29,12 +31,7 @@ const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({
             <Text style={styles.headerText}>{'Delete Task?'}</Text>
           </View>
           <View style={styles.taskContainer}>
-            <Text>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis
-              omnis sunt, facere quibusdam perferendis, asperiores incidunt
-              minima animi nemo libero vitae dolor dicta. Quos voluptates
-              expedita, natus dolore sapiente obcaecati!
-            </Text>
+            <Text>{task}</Text>
           </View>
           <View style={styles.buttonContainer}>
             <Pressable onPress={handleDelete}>

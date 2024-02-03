@@ -12,7 +12,7 @@ const TaskItem = ({task, delTask}: {task: string; delTask: () => void}) => {
       inputRange: [0, 1],
       outputRange: [50, 0],
     });
-    return <DeleteButton effect={trans} delTask={delTask} />;
+    return <DeleteButton effect={trans} delTask={delTask} task={task} />;
   };
   return (
     <GestureHandlerRootView>

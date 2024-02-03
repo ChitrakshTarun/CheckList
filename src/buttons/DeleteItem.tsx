@@ -6,8 +6,9 @@ import DeleteConfirmModal from '../modals/ConfirmDeleteModal';
 interface DeleteButtonProps {
   effect: Animated.AnimatedInterpolation<number>;
   delTask: () => void;
+  task: string;
 }
-const DeleteButton: React.FC<DeleteButtonProps> = ({effect, delTask}) => {
+const DeleteButton: React.FC<DeleteButtonProps> = ({effect, delTask, task}) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <Animated.View
@@ -24,6 +25,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({effect, delTask}) => {
           isVisible={modalVisible}
           onButtonPress={() => setModalVisible(false)}
           delTask={delTask}
+          task={task}
         />
       )}
     </Animated.View>
