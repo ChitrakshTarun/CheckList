@@ -1,7 +1,8 @@
-import React from 'react';
-import {StyleSheet, Text, View, Animated} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View, Animated, Pressable} from 'react-native';
 import {GestureHandlerRootView, Swipeable} from 'react-native-gesture-handler';
 import DeleteItemButton from '../buttons/DeleteItem';
+import ViewItemModal from '../modals/ViewItemModal';
 
 const NoteItem = ({note, delItem}: {note: string; delItem: () => void}) => {
   const renderRightActions = (
@@ -13,14 +14,24 @@ const NoteItem = ({note, delItem}: {note: string; delItem: () => void}) => {
     });
     return <DeleteItemButton effect={trans} delItem={delItem} item={note} />;
   };
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <GestureHandlerRootView>
       <Swipeable renderRightActions={renderRightActions}>
-        <View style={styles.container}>
-          <Text numberOfLines={1} style={styles.text}>
-            {note}
-          </Text>
-        </View>
+        <Pressable onPress={() => setModalVisible(true)}>
+          <View style={styles.container}>
+            <Text numberOfLines={1} style={styles.text}>
+              {note}
+            </Text>
+          </View>
+        </Pressable>
+        {modalVisible && (
+          <ViewItemModal
+            isVisible={modalVisible}
+            item={note}
+            onButtonPress={() => setModalVisible(false)}
+          />
+        )}
       </Swipeable>
     </GestureHandlerRootView>
   );

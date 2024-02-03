@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, Animated} from 'react-native';
+import {StyleSheet, Text, View, Animated, Pressable} from 'react-native';
 import {GestureHandlerRootView, Swipeable} from 'react-native-gesture-handler';
 import DeleteItemButton from '../buttons/DeleteItem';
 import Checkbox from './Checkbox';
+import ViewItemModal from '../modals/ViewItemModal';
 
 const TaskItem = ({task, delItem}: {task: string; delItem: () => void}) => {
   const renderRightActions = (
@@ -15,22 +16,32 @@ const TaskItem = ({task, delItem}: {task: string; delItem: () => void}) => {
     return <DeleteItemButton effect={trans} delItem={delItem} item={task} />;
   };
   const [checked, setChecked] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const handlePress = () => {
     setChecked(!checked);
   };
   return (
     <GestureHandlerRootView>
       <Swipeable renderRightActions={renderRightActions}>
-        <View style={styles.container}>
-          <View style={styles.checkbox}>
-            <Checkbox status={checked} handlePress={handlePress} />
+        <Pressable onPress={() => setModalVisible(true)}>
+          <View style={styles.container}>
+            <View style={styles.checkbox}>
+              <Checkbox status={checked} handlePress={handlePress} />
+            </View>
+            <Text
+              numberOfLines={1}
+              style={checked ? styles.textStrike : styles.text}>
+              {task}
+            </Text>
           </View>
-          <Text
-            numberOfLines={1}
-            style={checked ? styles.textStrike : styles.text}>
-            {task}
-          </Text>
-        </View>
+        </Pressable>
+        {modalVisible && (
+          <ViewItemModal
+            isVisible={modalVisible}
+            item={task}
+            onButtonPress={() => setModalVisible(false)}
+          />
+        )}
       </Swipeable>
     </GestureHandlerRootView>
   );
@@ -58,6 +69,7 @@ const styles = StyleSheet.create({
   checkbox: {
     marginRight: 12,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   text: {
     color: '#000',
@@ -65,7 +77,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textStrike: {
-    color: '#000',
+    color: '#555555',
     fontSize: 22,
     alignItems: 'center',
     textDecorationLine: 'line-through',
